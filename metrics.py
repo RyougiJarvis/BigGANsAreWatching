@@ -8,7 +8,9 @@ def IoU(mask1, mask2):
     mask1, mask2 = mask1.to(torch.bool), mask2.to(torch.bool)
     intersection = torch.sum(mask1 * (mask1 == mask2), dim=[-1, -2]).squeeze()
     union = torch.sum(mask1 + mask2, dim=[-1, -2]).squeeze()
-    return (intersection.to(torch.float) / union).mean().item()
+    iou = (intersection.to(torch.float) / union).mean()
+    iou = iou.item() if (iou == iou) else 0  # deal with nans, i.e. torch.nan_to_num(iou, nan=0.0)
+    return iou
 
 
 def accuracy(mask1, mask2):

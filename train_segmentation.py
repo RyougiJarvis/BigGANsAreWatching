@@ -40,7 +40,7 @@ class SegmentationTrainParams(object):
         self.n_steps = 12000
 
         self.latent_shift_r = 5.0
-        self.batch_size = 95
+        self.batch_size = 80
 
         self.steps_per_log = 100
         self.steps_per_checkpoint_save = 1000
